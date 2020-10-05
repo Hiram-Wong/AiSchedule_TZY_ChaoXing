@@ -71,7 +71,7 @@ function scheduleHtmlParser(html) {
             // 老师
             var teacher = $(this).find(`a:nth-child(${ 4 + i*8 })`).text()
             // 第几周
-            const weeks = $(this).children()[4].next.data
+            const weeks = $(this).children()[4 + i*8 ].next.data
             const week = weeksParser(weeks)
             // 星期几
             const days = $(this).attr('id')
