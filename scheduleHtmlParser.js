@@ -94,7 +94,7 @@ function scheduleHtmlParser(html) {
     // 判断冬令时或夏令时作息时间
     dateIf ? time = time1 :time = time2
     course = dataParser(courseInfos, time)
-    console.log(course)
+    console.info(course)
     return course
 
     /** 
