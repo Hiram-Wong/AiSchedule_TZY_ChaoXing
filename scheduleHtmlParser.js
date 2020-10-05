@@ -75,9 +75,14 @@ function scheduleHtmlParser(html) {
             const week = weeksParser(weeks)
             // 星期几
             const days = $(this).attr('id')
-            const day = dayParser(days)
+            const day = dayParser(days).startDay
             // 第几节
-            const sections = $(this).attr('rowspan')
+            const sections = parseInt($(this).attr('rowspan'))
+
+            // 判断冬令时或夏令时作息时间
+            dateIf ? time = time1 :time = time2
+            course = dataParser(courseInfos, time)
+            const section = sectionsParser(dayParser(days).startSection, sections)
             // courseInfos
             const obj = {
                         name: name,
@@ -85,15 +90,11 @@ function scheduleHtmlParser(html) {
                         teacher: teacher,
                         weeks: week,
                         day: day,
-                        sections: sections
+                        sections: section
                     }
             courseInfos.push(obj)
         }
     })
-
-    // 判断冬令时或夏令时作息时间
-    dateIf ? time = time1 :time = time2
-    course = dataParser(courseInfos, time)
     console.info(course)
     return course
 
@@ -120,22 +121,30 @@ function scheduleHtmlParser(html) {
      * @param  String  section
      * @return JSON
      */
-    function sectionsParser(section) {
-        const sections = [{
-            section: section
-        }]
+    function sectionsParser(startSection, middle) {
+        console.log(startSection, middle)
+        const sections  = []
+        for (let i = startSection; i <= startSection + middle -1; i++) {
+            sections.push(time[i-1])
+        }
         return sections
     }
 
     /** 
-     * 解析课时星期几信息
+     * 解析课时星期几和第几节上课信息
      *
      * @param  String  day
      * @return Number
      */
-    function dayParser(day) {
-        const days = day.replace(/Cell/,"")[0]
-        return days
+    function dayParser(data) {
+        const day = data.replace(/Cell/,"")
+        const startDay = parseInt(day[0])
+        const startSection = parseInt(day.substr(1))
+        const result = {
+            startDay: startDay,
+            startSection: startSection
+        }
+        return result
     }
 
     /** 
