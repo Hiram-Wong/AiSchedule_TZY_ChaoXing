@@ -2,7 +2,7 @@
  * @author  王宇海
  * @date    2020-10-05
  * @version 1.1
- * @file    scheduleHtmlParser.js
+ * @file    scheduleHtmlProvider.js
  * @title 台州职业技术学院-台州职业技术学院综合教学管理系统-超星系统-小爱课表导入  
  * 
  * Description1⃣️: 除函数名外都可编辑
