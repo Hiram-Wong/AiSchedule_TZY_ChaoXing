@@ -128,7 +128,6 @@ function scheduleHtmlParser(html) {
      * @returns {[]}
      */
     function sectionsParser(startSection, middle) {
-        console.log(startSection, middle)
         const sections = []
         for (let i = startSection; i <= startSection + middle - 1; i++) {
             sections.push(time[i - 1])
