@@ -80,7 +80,7 @@ function scheduleHtmlParser(html) {
             const sections = parseInt($(this).attr('rowspan'))
 
             // 判断冬令时或夏令时作息时间
-            dateIf ? time = summerTime : time = winterTime
+            dateIf ? time = winterTime : time = summerTime
             course = dataParser(courseInfos, time)
             course = {
                 courseInfos: courseInfos,
